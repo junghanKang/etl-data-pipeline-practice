@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  python-batch:
+    build: ./batch
+    container_name: python-batch
+    volumes:
+      - ./batch/data-host:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    ports:
+      - 9000:9000
+    tty: true
+
+  mongodb:
+    image: mongo:6.0.4
+    container_name: mongodb
+    volumes:
+      - ./mongodb/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - mongodb-volume:/data/db
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=1111
+      - MONGO_INITDB_DATABASE=healthcare
+    ports:
+      - 27017:27017
+
+volumes:
+  mongodb-volume:
