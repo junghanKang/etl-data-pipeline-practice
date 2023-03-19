@@ -4,7 +4,7 @@ import threading
 import logging
 
 BASE_URL = "" # API URL : If you want to use this ETL pipeline for other API, you can change this value
-MONGO_CONNECTION_URI = "mongodb://deteam:1234@mongodb:27017/?authMechanism=DEFAULT&authSource=accessment"
+MONGO_CONNECTION_URI = "mongodb://deteam:1234@mongodb:27017/?authMechanism=DEFAULT&authSource=healthcare"
 MAX_PAGE = 20
 
 logging.basicConfig(filename='logfile.txt', level=logging.INFO, format='%(asctime)s %(message)s')
@@ -25,7 +25,7 @@ def transform_and_load(data, page_count):
 try:
     log("ETL pipeline will start. connect DB")
     with MongoClient(MONGO_CONNECTION_URI) as client:
-        db = client["accessment"]
+        db = client["healthcare"]
         collection = db["user"]
 
         etl = etl.Etl()

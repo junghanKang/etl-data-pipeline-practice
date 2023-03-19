@@ -93,10 +93,10 @@ Check logs
 ### 4. Confirm MongoDB for checking if all data are loaded
 ```
 > docker compose exec mongodb bash
-> mongosh -u deteam -p 1234 accessment
+> mongosh -u deteam -p 1234 healthcare
 ```
 or you can use MongoDB GUI tool like [MongoDB Compass](https://www.mongodb.com/products/compass)
-> URI for connection: `mongodb://deteam:1234@localhost:27017/?authMechanism=DEFAULT&authSource=accessment`
+> URI for connection: `mongodb://deteam:1234@localhost:27017/?authMechanism=DEFAULT&authSource=healthcare`
 
 ### Unit test
 ```
