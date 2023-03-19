@@ -54,19 +54,22 @@ Each user(patient) visit will be stored in the HISTORY field, maintaining a reco
 ## How to run with local environment setup
 ### 1. Git clone target repository
 ```
-> git clone git@github.com:lunit-io/di-interview-kjunghan.git
-> cd di-interview-kjunghan
+> git clone git@github.com:junghanKang/etl-data-pipeline-practice.git
+> cd etl-data-pipeline-practice
 ```
 Directory structure
 ```
-├── INTRODUCTION.md
 ├── README.md
 ├── batch
 │   ├── data-host
+│   │   ├── etl.py
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   └── test.py
 │   └── dockerfile
 ├── docker-compose.yaml
-├── mongodb
-│   └── mongo-init.js
+└── mongodb
+    └── mongo-init.js
 ```
 ### 2. run docker compose
 ```
