@@ -77,7 +77,7 @@ Directory structure
 > docker compose ps
 NAME                IMAGE                                COMMAND                  SERVICE             CREATED             STATUS              PORTS
 mongodb             mongo:6.0.4                          "docker-entrypoint.s…"   mongodb             4 hours ago         Up 4 hours          0.0.0.0:27017->27017/tcp
-python-batch        di-interview-kjunghan-python-batch   "python3"                python-batch        4 hours ago         Up 4 hours          0.0.0.0:9000->9000/tcp
+python-batch        etl-data-pipeline-practice-python-batch   "python3"                python-batch        4 hours ago         Up 4 hours          0.0.0.0:9000->9000/tcp
 ```
 
 ### 3. Run python batch for starting ETL
