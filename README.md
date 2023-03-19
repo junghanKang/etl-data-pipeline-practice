@@ -80,7 +80,63 @@ mongodb             mongo:6.0.4                          "docker-entrypoint.s…
 python-batch        etl-data-pipeline-practice-python-batch   "python3"                python-batch        4 hours ago         Up 4 hours          0.0.0.0:9000->9000/tcp
 ```
 
-### 3. Run python batch for starting ETL
+### 3. Create MongoDB collection
+<details>
+<summary>Click me</summary>
+
+```
+db.createCollection("users", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: ["ID", "NAME", "HISTORY"],
+         properties: {
+            ID: {
+               bsonType: "string",
+               description: "must be a string and is required"
+            },
+            NAME: {
+               bsonType: "string",
+               description: "must be a string and is required"
+            },
+            HISTORY: {
+               bsonType: "array",
+               description: "must be an array and is required",
+               items: {
+                  bsonType: "object",
+                  required: ["GENERATION_CODE", "AGE", "INSTITUTION", "ACTIVITY", "COMMENT"],
+                  properties: {
+                     GENERATION_CODE: {
+                        bsonType: "string",
+                        description: "must be a string and is required"
+                     },
+                     AGE: {
+                        bsonType: ["int", "double"],
+                        description: "must be a number and is required"
+                     },
+                     INSTITUTION: {
+                        bsonType: "string",
+                        description: "must be a string and is required"
+                     },
+                     ACTIVITY: {
+                        bsonType: "string",
+                        description: "must be a string and is required"
+                     },
+                     COMMENT: {
+                        bsonType: "string",
+                        description: "must be a string and is required"
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+})
+```
+</details>
+
+### 4. Run python batch for starting ETL
 ```
 > docker compose exec python-batch python main.py
 ```
@@ -90,7 +146,12 @@ Check logs
 > docker compose exec python-batch cat logfile.txt
 ```
 
-### 4. Confirm MongoDB for checking if all data are loaded
+Elapsed time for ETL when 1000 files * 10 pages are loaded
+```
+Elapse time with threading(hh:mm:ss): 00:01:24
+```
+
+### 5. Confirm MongoDB for checking if all data are loaded
 ```
 > docker compose exec mongodb bash
 > mongosh -u deteam -p 1234 healthcare
